@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tejas Pitale — L&D Portfolio</title>
+<meta name="description" content="Tejas Pitale — Learning & Development specialist. Instructional design, LMS implementation, leadership development and digital learning." />
+<meta name="theme-color" content="#06b6d4" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<style>
+:root {
+  --accent: #06b6d4;
+  --accent2: #3b82f6;
+  --muted: #6b7280;
+  --bg: #f7fbfc;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial; color: #071022; background: linear-gradient(180deg,#f8fbfd,#ffffff); }
+a { color: var(--accent); text-decoration: none; }
+.container { max-width: 1100px; margin: 0 auto; padding: 18px; }
+header { display:flex; align-items:center; justify-content:space-between; padding:10px 0; position:sticky; top:0; background:rgba(255,255,255,0.9); backdrop-filter:blur(4px); z-index:60; }
+.brand { font-weight:700; color:var(--accent); font-size:18px; }
+nav.desktop { display:flex; gap:16px; }
+nav.desktop a { color:#0b1220; font-weight:600; }
+.burger { display:none; background:transparent; border:0; font-size:20px; cursor:pointer; }
+@media(max-width:840px) { nav.desktop { display:none; } .burger { display:block; } }
+nav.mobile { display:none; position:absolute; left:0; right:0; top:64px; background:white; padding:12px; box-shadow:0 6px 20px rgba(11,17,34,0.08); border-radius:8px; margin:0 18px; }
+nav.mobile.open { display:block; }
+nav.mobile a { display:block; padding:10px 6px; border-bottom:1px solid #f2f4f6; }
+.hero { display:flex; flex-direction:row; gap:24px; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:white; padding:34px; border-radius:14px; align-items:center; margin-top:18px; }
+.hero-left { flex:1; }
+.hero-right { width:220px; text-align:center; }
+.hero img.profile { width:140px; height:140px; border-radius:50%; border:4px solid rgba(255,255,255,0.15); object-fit:cover; }
+.hero h1 { margin:8px 0 6px; font-size:clamp(20px,3.8vw,32px); }
+.hero p { margin:0; color:rgba(255,255,255,0.95); }
+.btn { display:inline-block; margin-top:12px; padding:10px 14px; background:white; color:var(--accent); border-radius:8px; font-weight:700; }
+section { margin-top:40px; padding-top:20px; border-top:2px solid #f0f4f8; }
+h2 { font-size:22px; margin:0 0 12px; color:var(--accent); }
+.subtitle { color:var(--muted); font-size:14px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
+.card { background:white; padding:16px; border-radius:12px; box-shadow:0 6px 18px rgba(11,17,34,0.06); transition:transform .18s; }
+.card:hover { transform:translateY(-6px); }
+.skills { display:flex; flex-direction:column; gap:12px; }
+.skill-row { display:flex; align-items:center; gap:12px; background:white; padding:12px; border-radius:10px; }
+.skill-name { width:160px; font-weight:600; }
+.skill-bar { flex:1; height:10px; background:#eef3f6; border-radius:999px; overflow:hidden; }
+.skill-bar > i { display:block; height:100%; background:linear-gradient(90deg,var(--accent),var(--accent2)); }
+.timeline { position:relative; padding-left:18px; }
+.timeline::before { content:""; position:absolute; left:8px; top:0; bottom:0; width:2px; background:#e6eef3; }
+.milestone { position:relative; padding:10px 14px; background:white; border-radius:10px; margin-bottom:12px; box-shadow:0 6px 18px rgba(11,17,34,0.04); }
+.milestone::before { content:""; position:absolute; left:-28px; top:16px; width:14px; height:14px; border-radius:50%; background:var(--accent); }
+.contact-grid { display:grid; grid-template-columns:1fr 320px; gap:16px; }
+@media(max-width:840px) { .hero{flex-direction:column} .hero-right{width:100%} .contact-grid{grid-template-columns:1fr} }
+footer { margin-top:28px; color:var(--muted); font-size:13px; text-align:center; }
+
+.muted{ color:var(--muted); }
+.center{ text-align:center; }
+
+/* Certifications */
+.certificates { padding:20px; }
+.cert-container { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+.cert-card { width:200px; height:250px; border:1px solid #ddd; border-radius:12px; background:#fff; text-align:center; padding:10px; cursor:pointer; transition: transform 0.3s, box-shadow 0.3s; display:flex; flex-direction:column; justify-content:center; align-items:center; text-decoration:none; color:#000; }
+.cert-card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
+.cert-card img, .cert-card svg { width:120px; height:120px; margin-bottom:10px; transition: transform 0.3s; }
+.cert-card:hover img, .cert-card:hover svg { transform: scale(1.1) rotate(5deg); }
+.cert-card p { font-size:14px; font-weight:600; margin:0; }
+.cert-header { text-align:center; font-size:24px; font-weight:700; margin-bottom:16px; color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="brand">Tejas Pitale</div>
+  <nav class="desktop">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#work">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="burger" aria-label="Open menu" onclick="toggleMobileNav()"><i class="fa-solid fa-bars"></i></button>
+  <nav id="mobileNav" class="mobile" role="navigation" aria-hidden="true">
+    <a href="#about" onclick="toggleMobileNav()">About</a>
+    <a href="#skills" onclick="toggleMobileNav()">Skills</a>
+    <a href="#work" onclick="toggleMobileNav()">Projects</a>
+    <a href="#experience" onclick="toggleMobileNav()">Experience</a>
+    <a href="#certifications" onclick="toggleMobileNav()">Certifications</a>
+    <a href="#contact" onclick="toggleMobileNav()">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left top">
+    <h1>Learning & Development Specialist</h1>
+	<br>
+    <p class="muted">9+ years in L&D — Talent Managment ,Course creation, Instructional design, LMS rollouts, leadership development and HR analytics.</p>
+    <br>
+	<p class="subtitle">I design learning experiences, implement LMS, and build capability frameworks that align learning with business outcomes.</p>
+    <br>
+	<a class="btn" href="assets/Tejas Pitale resume.pdf" download>📄 Download Resume</a>
+  </div>
+  <div class="hero-right center">
+    <img class="profile" src="assets/tejasprofile.jpeg" alt="Tejas Pitale — profile photo">
+    <lottie-player src="assets/growthmindset.json" background="transparent" speed="1" style="width:160px;height:160px;margin-top:12px" loop autoplay></lottie-player>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="position:relative; overflow:hidden;">
+  <lottie-player 
+    src="assets/Circle Grow.json" 
+    background="transparent"  
+    speed="1"  
+    style="width:300px;height:300px;top:-50px;right:-50px;"  
+    class="lottie-bg"  
+    loop autoplay>
+  </lottie-player>
+  <h2>About Me</h2>
+  <p class="muted">I’m a Learning & Development professional who believes learning should be measurable, engaging and designed for transfer. I use blended learning, microlearning and analytics to measure impact and iterate fast.</p>
+  <p style="margin-top:8px">Highlights: Competency frameworks, Moodle/Tenneo LMS rollouts, virtual onboarding and GPTW leadership for employee engagement.</p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<lottie-player src="assets/Circle Grow.json" 
+  background="transparent" speed="1"
+  style="width:200px;height:200px;bottom:-40px;left:-40px;"
+  class="lottie-bg" loop autoplay>
+</lottie-player>
+  <h2>Skills</h2>
+  <div class="skills">
+    <div class="skill-row"><div class="skill-name">Instructional Design</div><div class="skill-bar"><i style="width:80%"></i></div></div>
+    <div class="skill-row"><div class="skill-name">LMS Implementation</div><div class="skill-bar"><i style="width:85%"></i></div></div>
+    <div class="skill-row"><div class="skill-name">Leadership Development</div><div class="skill-bar"><i style="width:80%"></i></div></div>
+    <div class="skill-row"><div class="skill-name">HR Analytics</div><div class="skill-bar"><i style="width:90%"></i></div></div>
+    <div class="skill-row"><div class="skill-name">Competency Mapping</div><div class="skill-bar"><i style="width:70%"></i></div></div>
+    <div class="skill-row"><div class="skill-name">Skill Matrix</div><div class="skill-bar"><i style="width:85%"></i></div></div>
+    <div class="skill-row"><div class="skill-name">Performance Management</div><div class="skill-bar"><i style="width:88%"></i></div></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+
+<section id="work">
+<lottie-player src="assets/Circle Grow.json"
+  background="transparent" speed="0.8"
+  style="width:250px;height:250px;top:-60px;right:10px;"
+  class="lottie-bg" loop autoplay>
+</lottie-player>
+  <h2>Featured Projects</h2>
+  <div class="grid">
+    <article class="card">
+      <h3>Workforce Upskilling</h3>
+      <p class="muted">Competency-based learning paths to close critical skill gaps.</p>
+      <lottie-player src="assets/Workforce.json" background="transparent" speed="1" style="width:100%;height:140px;margin-top:8px" loop autoplay></lottie-player>
+      <p><strong>Impact:</strong> Productivity lift, clearer succession pipelines.</p>
+    </article>
+    <article class="card">
+      <h3>LMS Implementation</h3>
+      <p class="muted">Spearheaded Moodle & Tenneo implementation and adoption strategies.</p>
+      <lottie-player src="assets/lms.json" background="transparent" speed="1" style="width:100%;height:140px;margin-top:8px" loop autoplay></lottie-player>
+      <p><strong>Impact:</strong> Better access to learning, measurable completion rates.</p>
+    </article>
+    <article class="card">
+      <h3>Virtual Onboarding</h3>
+      <p class="muted">Self-paced induction to speed ramp-up and reduce manager load.</p>
+      <lottie-player src="assets/VirtualOnboarding.json" background="transparent" speed="1" style="width:100%;height:140px;margin-top:8px" loop autoplay></lottie-player>
+      <p><strong>Impact:</strong> Reduced time-to-productivity, better first 90 days experience.</p>
+    </article>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <h2>Experience</h2>
+  <div class="timeline">
+    <div class="milestone"><strong>Manager – Learning & Development</strong><div class="muted">MRCC IT Solutions Pvt Ltd</div><div>Designed training programs, led LMS rollout, drove GPTW certification and a skill-matrix for succession planning.</div></div>
+    <div class="milestone"><strong>Senior Executive – HR</strong><div class="muted">Mahindra Accelo & Addnode India</div><div>Built self-learning induction and HRIS-driven learning dashboards to measure training effectiveness.</div></div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="certificates">
+  <div class="cert-header">Certifications</div>
+  <div class="cert-container">
+    <a class="cert-card" href="assets/Coursera-ALDZ8UB5ZQYA.pdf" target="_blank" data-alt="Coursera Certificate" data-img="assets/Coursera ALDZ8UB5ZQYA.jpg"><p>Coursera Certificate</p></a>
+    <a class="cert-card" href="assets/Instructional Design Foundations and Applications.jpg" target="_blank" data-alt="Instructional Design Foundations" data-img="assets/Instructional Design Foundations and Applications.jpg"><p>Instructional Design Foundations & Applications</p></a>
+    <a class="cert-card" href="assets/Learning and Development.jpg" target="_blank" data-alt="Learning and Development" data-img="assets/Learning and Development.jpg"><p>Learning & Development</p></a>
+    <a class="cert-card" href="assets/Learning Experience Design Orientation to the Profession.jpg" target="_blank" data-alt="Learning Experience Design Orientation" data-img="assets/Learning Experience Design Orientation to the Profession.jpg"><p>Learning Experience Design Orientation</p></a>
+    <a class="cert-card" href="assets/OKR Certification Leadership and Goal Setting.jpg" target="_blank" data-alt="OKR Certification" data-img="assets/OKR Certification Leadership and Goal Setting.jpg"><p>OKR Certification: Leadership & Goal Setting</p></a>
+    <a class="cert-card" href="assets/Strategizing the use of Generative AI in learning Design.jpg" target="_blank" data-alt="Strategizing Generative AI" data-img="assets/Strategizing the use of Generative AI in learning Design.jpg"><p>Strategizing Generative AI in Learning Design</p></a>
+    <a class="cert-card" href="assets/Using Generative AI for Learning Design Activities.jpg" target="_blank" data-alt="Using Generative AI" data-img="assets/Using Generative AI for Learning Design Activities.jpg"><p>Using Generative AI for Learning Activities</p></a>
+  </div>
+</section>
+
+<script>
+document.querySelectorAll('.cert-card').forEach(card => {
+  const imgSrc = card.getAttribute('data-img');
+  const altText = card.getAttribute('data-alt');
+  const img = document.createElement('img');
+  img.src = imgSrc;
+  img.alt = altText;
+
+  img.onerror = function() {
+    img.style.display = 'none';
+    card.insertAdjacentHTML('afterbegin', `
+      <svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' fill='#06b6d4' viewBox='0 0 16 16'>
+        <path d='m9.669.864.522 1.045 1.15.167c.306.044.545.265.64.562l.523 1.606 1.518.736c.282.137.454.423.454.731v1.554c0 .308-.172.594-.454.731l-1.518.736-.523 1.606a.878.878 0 0 1-.64.562l-1.15.167-.522 1.045a.878.878 0 0 1-.787.47h-1.334a.878.878 0 0 1-.787-.47l-.522-1.045-1.15-.167a.878.878 0 0 1-.64-.562l-.523-1.606-1.518-.736A.802.802 0 0 1 2 7.265V5.711c0-.308.172-.594.454-.731l1.518-.736.523-1.606c.095-.297.334-.518.64-.562l1.15-.167.522-1.045A.878.878 0 0 1 7.331.394h1.334c.337 0 .646.182.787.47Z'/>
+      </svg>
+    `);
+  };
+
+  card.insertBefore(img, card.firstChild);
+});
+
+// Mobile nav toggle
+function toggleMobileNav() {
+  const nav = document.getElementById('mobileNav');
+  const isOpen = nav.classList.contains('open');
+  nav.classList.toggle('open', !isOpen);
+  nav.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+}
+
+// Footer year
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('year').textContent = new Date().getFullYear();
+});
+</script>
+
+<!-- CONTACT -->
+<lottie-player src="assets/Circle Grow.json"
+  background="transparent" speed="1.2"
+  style="width:180px;height:180px;bottom:10px;right:20px;"
+  class="lottie-bg" loop autoplay>
+</lottie-player>
+<section id="contact">
+<lottie-player src="assets/Circle Grow.json"
+  background="transparent" speed="1.2"
+  style="width:180px;height:180px;bottom:10px;right:20px;"
+  class="lottie-bg" loop autoplay>
+</lottie-player>
+  <h2>Contact</h2>
+  <div class="contact-grid">
+    <div class="contact-icons">
+      <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#06b6d4" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.83.646.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a17.568 17.568 0 0 1-6.262-3.93 17.568 17.568 0 0 1-3.93-6.262c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/></svg>
+      <a href="tel:+919969035639">+91 99690 35639</a></p>
+      <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#06b6d4" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555z"/><path d="M0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.143l-6.57-4.027L8 9.586l-1.239-.757z"/></svg>
+      <a href="mailto:tejaspravinpitale@gmail.com">tejaspravinpitale@gmail.com</a></p>
+      <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#06b6d4" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.324 0 .725 0h14.55c.401 0 .725.513.725 1.146v13.708c0 .633-.324 1.146-.725 1.146H.725A.723.723 0 0 1 0 14.854V1.146zM4.943 13.5V6.169H2.542V13.5h2.401zM3.743 5.187c.837 0 1.356-.554 1.356-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.356.54-1.356 1.248 0 .694.519 1.248 1.327 1.248h.015zm4.892 8.313V9.359c0-.221.016-.442.081-.599.178-.442.584-.9 1.265-.9.892 0 1.249.678 1.249 1.672v3.968h2.401V9.23c0-2.266-1.209-3.322-2.819-3.322-1.297 0-1.872.726-2.193 1.234h.016v-1.06H8.635c.03.678 0 7.418 0 7.418h2.401z"/></svg>
+      <a href="https://www.linkedin.com/in/tejaspitale/" target="_blank">LinkedIn Profile</a></p>
+    </div>
+  </div>
+</section>
+<!-- STICKY GET IN TOUCH WIDGET -->
+<div id="stickyGetInTouch" style="
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:300px;
+  max-width:90%;
+  background:#f0f8ff;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.2);
+  overflow:hidden;
+  z-index:100;
+  transition: all 0.4s ease;
+">
+  <!-- Header -->
+  <div id="stickyHeader" style="
+    background:#06b6d4;
+    color:white;
+    padding:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+  ">
+    <span id="stickyTitle">Get in Touch</span>
+  <!--  <span id="stickyClose" style="font-weight:bold; cursor:pointer;"></span> -->
+  </div>
+
+  <!-- Form Content -->
+  <div id="stickyFormContent" style="
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    max-height:500px; 
+    overflow:hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    opacity:1;
+  ">
+    <p style="color:#6b7280; font-size:14px;">Don't be shy. My inbox gets lonely. 😜</p>
+    <form id="stickyForm" onsubmit="submitStickyForm(event)">
+      <input type="text" name="name" placeholder="Your Name" required style="width:100%;padding:8px;border-radius:6px;border:1px solid #e0e7ff;">
+      <input type="tel" name="phone" placeholder="Your Phone" required style="width:100%;padding:8px;border-radius:6px;border:1px solid #e0e7ff;">
+      <input type="email" name="email" placeholder="Your Email" required style="width:100%;padding:8px;border-radius:6px;border:1px solid #e0e7ff;">
+      <textarea name="message" rows="3" placeholder="Your Message" required style="width:100%;padding:8px;border-radius:6px;border:1px solid #e0e7ff;"></textarea>
+      <button type="submit" style="margin-top:6px;padding:8px 12px;border:none;background:#06b6d4;color:white;border-radius:6px;cursor:pointer;">Send</button>
+      <small id="stickyFormStatus" style="color:#6b7280;"></small>
+    </form>
+    <div style="text-align:center; margin-top:12px;">
+      <img src="https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif" alt="Funny GIF" style="max-width:100%; border-radius:10px; transition: transform 0.5s;">
+    </div>
+  </div>
+</div>
+
+<script>
+  const stickyWidget = document.getElementById('stickyGetInTouch');
+  const stickyHeader = document.getElementById('stickyHeader');
+  const stickyClose = document.getElementById('stickyClose');
+  const stickyFormContent = document.getElementById('stickyFormContent');
+  const stickyTitle = document.getElementById('stickyTitle');
+
+  let isMinimized = false;
+
+  // Smooth expand/collapse function
+  function toggleStickyWidget() {
+    if (isMinimized) {
+      stickyFormContent.style.maxHeight = '500px';
+      stickyFormContent.style.opacity = '1';
+      stickyTitle.textContent = 'Get in Touch';
+      isMinimized = false;
+    } else {
+      stickyFormContent.style.maxHeight = '0';
+      stickyFormContent.style.opacity = '0';
+      stickyTitle.textContent = 'Get in Touch → Click to Open';
+      isMinimized = true;
+    }
+  }
+
+  stickyHeader.addEventListener('click', toggleStickyWidget);
+
+  stickyClose.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!isMinimized) toggleStickyWidget();
+  });
+
+  function submitStickyForm(e) {
+    e.preventDefault();
+    const form = e.target;
+    const status = document.getElementById('stickyFormStatus');
+    status.textContent = 'Sending...';
+
+    const payload = {
+      name: form.name.value,
+      phone: form.phone.value,
+      email: form.email.value,
+      message: form.message.value
+    };
+
+    const mailto = `mailto:tejaspravinpitale@gmail.com?subject=${encodeURIComponent('Get in Touch from '+payload.name)}&body=${encodeURIComponent('Name: '+payload.name+'\nPhone: '+payload.phone+'\nEmail: '+payload.email+'\nMessage: '+payload.message)}`;
+    window.location.href = mailto;
+    status.textContent = 'Message sent! 🎉';
+    form.reset();
+  }
+</script>
+
+
+
+<footer>
+  Made with ❤️ · © <span id="year"></span> Tejas Pitale
+</footer>
+
+<script>
+async function submitForm(e){
+  e.preventDefault();
+  const status=document.getElementById('formStatus');
+  status.textContent='Sending...';
+  const payload={
+    name:document.getElementById('name').value,
+    email:document.getElementById('email').value,
+    message:document.getElementById('message').value
+  };
+  const mailto=`mailto:tejaspravinpitale@gmail.com?subject=${encodeURIComponent('Website query from '+payload.name)}&body=${encodeURIComponent(payload.message+'\n\nFrom: '+payload.email)}`;
+  window.location.href=mailto;
+}
+</script>
+
+</div>
+</body>
+</html>
