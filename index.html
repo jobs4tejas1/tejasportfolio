@@ -35,27 +35,51 @@
     nav.mobile.open{display:block}
     nav.mobile a{display:block;padding:12px 6px;border-bottom:1px solid #f3f4f6}
 
-    /* HERO - fixed, landscape layout preserved */
-    .hero{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:28px;
-      padding:50px 22px;
-      border-radius:22px;
-      position:relative;
-      overflow:hidden;
-      color:#fff;
-      background:linear-gradient(135deg,var(--primary),var(--secondary));
-      min-height:60vh;
-    }
+    /* HERO alignment fix */
+.hero {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  background: linear-gradient(135deg,#7f00ff,#e100ff) !important;
+  padding: 60px 40px !important;
+  min-height: 60vh !important;
+  color: #fff;
+}
 
-    /* three-column feel: left summary (+ CircleGrow), center rotating text + CTA, right profile + growth lottie */
-    .hero-left{flex:1;z-index:3;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;max-width:520px;padding-right:8px}
-    .hero-center{flex:0.9;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:3;text-align:center;min-height:140px}
-    .hero-right{width:260px;text-align:center;position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.hero-left,
+.hero-center,
+.hero-right {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
 
-    .profile{width:200px;height:200px;border-radius:50%;border:4px solid rgba(255,255,255,0.15);object-fit:cover}
+.hero-left {
+  align-items: flex-start !important;
+  text-align: left !important;
+  max-width: 580px !important;
+  flex: 1 1 auto !important;
+}
+
+.hero-center {
+  align-items: center !important;
+  text-align: center !important;
+  flex: 0 0 auto !important;
+}
+
+.hero-right {
+  align-items: center !important;
+  text-align: center !important;
+  flex: 0 0 auto !important;
+}
+
+#hero-desc {
+  font-size: 1.1rem !important;
+  line-height: 1.7 !important;
+  margin: 0 0 24px 0 !important;
+  color: #fff !important;
+}
+
 
     /* ensure text is visible against purple gradient */
     #hero-desc{font-size:1.05rem;line-height:1.6;color:#fff;opacity:1;margin:0 0 18px 0}
@@ -164,35 +188,41 @@
       </nav>
     </header>
 
-    <!-- HERO Section -->
+    <!-- HERO Section (fixed alignment) -->
 <section class="hero" aria-label="Introduction"
   style="
     position: relative;
     display: flex;
-    align-items: center;  /* vertical centering */
+    align-items: center;
     justify-content: space-between;
     gap: 40px;
-    padding: 40px 40px;
+    padding: 60px 40px;
     border-radius: 22px;
     overflow: hidden;
     color: #fff;
-    min-height: 50vh;
-    background: linear-gradient(135deg, #7f00ff 0%, #e100ff 100%) !important;
+    min-height: 60vh;
+    background: linear-gradient(135deg,#7f00ff 0%,#e100ff 100%) !important;
   ">
 
-    <!-- LEFT: text block -->
-  <div class="hero-left"
-    style="
-      flex:1 1 auto;
+  <!-- faint background -->
+  <lottie-player
+    src="assets/competency.json"
+    background="transparent"
+    speed="1"
+    loop
+    style="opacity:0.06;position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;">
+  </lottie-player>
+
+  <!-- LEFT: summary text -->
+  <div class="hero-left" style="
+      flex:1;
       z-index:3;
       display:flex;
       flex-direction:column;
       justify-content:center;
       align-items:flex-start;
       text-align:left;
-      max-width:560px;
-    ">
-    <!-- (Optionally remove CircleGrow if you want cleaner) -->
+      max-width:580px;">
     <lottie-player id="CircleGrow"
       src="assets/CircleGrow.json"
       background="transparent"
@@ -201,31 +231,28 @@
       loop>
     </lottie-player>
 
-    <p style="
+    <p id="hero-desc" style="
         font-size:1.1rem;
         line-height:1.7;
         color:#fff;
-        margin:0 0 24px 0;
-        text-align:left;
-      ">
-      I’m a Learning & Development specialist turning programs into measurable results. From leadership development to digital learning innovations, I create experiences that engage minds, inspire action, and drive organizational success.
+        margin:0 0 24px 0;">
+      I’m a Learning & Development specialist turning programs into measurable results.
+      From leadership development to digital learning innovations, I create experiences
+      that engage minds, inspire action, and drive organizational success.
     </p>
   </div>
 
-  <!-- CENTER: rotating + CTA -->
-  <div class="hero-center"
-    style="
+  <!-- CENTER: rotating text + CTA -->
+  <div class="hero-center" style="
       flex:0 0 auto;
       z-index:3;
       display:flex;
       flex-direction:column;
       align-items:center;
       justify-content:center;
-      text-align:center;
-      padding:0 20px;
-    ">
+      text-align:center;">
     <h2 id="rotating-text"
-      style="font-size:1.8rem;color:#facc15;min-height:2.2rem; margin-bottom:14px;">
+      style="font-size:1.8rem;color:#facc15;min-height:2.2rem;margin-bottom:14px;">
     </h2>
     <a href="#contact" class="btn"
       style="background:white;color:#7f00ff;padding:12px 18px;border-radius:10px;font-weight:700;">
@@ -234,27 +261,25 @@
   </div>
 
   <!-- RIGHT: profile -->
-  <div class="hero-right"
-    style="
+  <div class="hero-right" style="
       flex:0 0 auto;
       z-index:3;
       display:flex;
       flex-direction:column;
       align-items:center;
-      justify-content:center;
-    ">
+      justify-content:center;">
     <img class="profile"
       src="assets/tejasprofile.jpeg"
       alt="Tejas Pitale"
-      style="width:200px; height:200px; border-radius:50%; border:4px solid rgba(255,255,255,0.15); object-fit:cover;">
+      style="width:200px;height:200px;border-radius:50%;
+      border:4px solid rgba(255,255,255,0.15);object-fit:cover;">
   </div>
 
-  <!-- ripple container -->
+  <!-- subtle ripple background -->
   <div id="ripple-container"
-    aria-hidden="true"
-    style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:2; pointer-events:none; opacity:0.14;">
+    style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+           z-index:2;pointer-events:none;opacity:0.14;">
   </div>
-
 </section>
 
 
@@ -623,6 +648,7 @@
   </script>
 </body>
 </html>
+
 
 
 
