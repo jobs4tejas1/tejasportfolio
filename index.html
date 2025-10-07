@@ -181,33 +181,49 @@
   ">
 	
       <!-- subtle background Lottie (kept but very faint) -->
-      <lottie-player class="section-bg-lottie" src="assets/competency.json" background="transparent" speed="1" loop style="opacity:0.06"></lottie-player>
+      <lottie-player class="section-bg-lottie" src="assets/competency.json" background="transparent" speed="1" loop style="opacity:0.06";position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;">
+	  </lottie-player>
 
       <!-- left: small CircleGrow + summary -->
       <div class="hero-left">
         <lottie-player id="CircleGrow" src="assets/CircleGrow.json" background="transparent" speed="1" style="width:120px;height:120px;margin-bottom:18px" loop></lottie-player>
 
-        <p id="hero-desc">
+    <div style="
+    flex:1;
+    z-index:3;
+    max-width:580px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+    text-align:left;
+  ">
+    <p style="
+      font-size:1.1rem;
+      line-height:1.7;
+      color:#fff;
+      margin-bottom:24px;
+      text-align:left;
+    ">
           I’m a Learning & Development specialist turning programs into measurable results. From leadership development to digital learning innovations, I create experiences that engage minds, inspire action, and drive organizational success.
         </p>
       </div>
 
       <!-- center: rotating text + CTA (kept as original center block) -->
       <div class="hero-center">
-        <h2 id="rotating-text" style="min-height:2.2rem"></h2>
-        <a href="#contact" class="btn">Let’s Transform</a>
+            <h2 id="rotating-text" style="font-size:1.8rem;color:#facc15;min-height:2.2rem;margin-bottom:14px;"></h2>
+        <a href="#contact" class="btn" style="background:white;color:#7f00ff;padding:12px 18px;border-radius:10px;font-weight:700;">Let’s Transform</a>
       </div>
 
-      <!-- right: profile picture + growth lottie -->
+      <!-- right: profile picture + removed lottie -->
     
-		<div class="hero-right">
-        <img class="profile" src="assets/tejasprofile.jpeg" alt="Tejas Pitale" />
-        <lottie-player id="growthMind" src="assets/growthmindset.json" background="transparent" speed="1" style="width:200px;height:200px;margin-top:14px" loop></lottie-player>
+		<div style="width:250px;z-index:3;display:flex;flex-direction:column;align-items:center;">
+        <img class="profile" src="assets/tejasprofile.jpeg" alt="Tejas Pitale" style="width:200px;height:200px;border-radius:50%;border:4px solid rgba(255,255,255,0.15);object-fit:cover;" /
       </div>
 		
 
       <!-- Ripple container (centered behind content) -->
-      <div id="ripple-container" aria-hidden="true"></div>
+      <div id="ripple-container" aria-hidden="true"style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;pointer-events:none;opacity:0.14;"></div>
     </section>
 
     <!-- SKILLS -->
@@ -575,5 +591,6 @@
   </script>
 </body>
 </html>
+
 
 
