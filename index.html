@@ -62,8 +62,22 @@
       overflow: hidden;
       color: #fff;
       min-height: 60vh;
+      /* remove direct background gradient */
+      background: none;
+/* Gradient overlay using pseudo-element */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0; /* top:0; bottom:0; left:0; right:0 */
+  z-index: 0; /* behind text/content */
+  background: linear-gradient(135deg, #7f00ff 0%, #e100ff 100%);
+  pointer-events: none; /* allows clicks through */
+}
+
       background: linear-gradient(135deg,#7f00ff 0%,#e100ff 100%);/* Purple gradient applied */
-    }
+      background-color: #7f00ff;
+ }
+/* Text and buttons stay above */
     .hero-left,.hero-center,.hero-right{ position: relative;z-index:3;}
     .hero-left{align-items:flex-start;text-align:left;max-width:580px;flex:1}
     .hero-center{align-items:center;text-align:center}
@@ -82,11 +96,9 @@
     }
     .hero-btn:hover{background:#f3f4f6;transform:translateY(-2px)}
 
-    /* Hero background & ripple */
-    .hero .section-bg-lottie,
-    #ripple-container{
-      position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;
-    }
+    /* Hero background & ripple also Ensure Lotties are behind content */
+
+    .hero .section-bg-lottie,#ripple-container{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;}
     #ripple-container{top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.14;}
 
     /* Sections default */
@@ -190,7 +202,7 @@
       <!-- LEFT: summary text -->
       <div class="hero-left">
         <lottie-player id="CircleGrow" src="assets/CircleGrow.json" background="transparent" speed="1"
-          style="width:140px;height:140px;margin-bottom:18px;" loop aria-hidden="true"></lottie-player>
+         class="section-bg-lottie" style="width:140px;height:140px;margin-bottom:18px;" loop aria-hidden="true"></lottie-player>
 
         <p id="hero-desc">
           I'm a Learning & Development specialist turning programs into measurable results. From content design to leadership development 
