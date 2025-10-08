@@ -63,6 +63,35 @@
       color: #fff;
       min-height: 60vh;
     }
+
+.hero-rotating-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-lottie {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 260px;  /* slightly larger than text width */
+  height: 260px;
+  transform: translate(-50%, -50%);
+  opacity: 0.3;  /* subtle glow effect */
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-rotating-text {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
     /* Gradient overlay using pseudo-element */
     .hero::before {
       content: '';
@@ -236,6 +265,13 @@
       </div>
 
       <!-- CENTER: rotating text + CTA -->
+<div class="hero-rotating-wrapper">
+  <div id="circleGrowLottie" class="circle-lottie"></div>
+  <h2 class="hero-rotating-text">
+    <span id="rotatingText"></span>
+  </h2>
+</div>
+
       <div class="hero-center">
         <h2 id="rotating-text" aria-live="polite"></h2>
         <a href="#contact" class="hero-btn">Let’s Transform</a>
@@ -529,6 +565,15 @@
     const phrases = ["Learning with Heart, Leading with Impact.","Where Growth Meets Purpose.","Elevating People, Empowering Performance."];
     const rotatingEl = document.getElementById('rotating-text');
     let idx = 0;
+
+// Load CircleGrow.json for hero rotating text background
+lottie.loadAnimation({
+  container: document.getElementById('circleGrowLottie'),
+  renderer: 'svg',
+  loop: true,
+  autoplay: true,
+  path: 'assets/lottie/CircleGrow.json'
+});
 
     function rotateText(){
       gsap.to(rotatingEl, {duration:0.45, opacity:0, onComplete: () => {
