@@ -64,16 +64,16 @@
       min-height: 60vh;
       background: linear-gradient(135deg,#7f00ff 0%,#e100ff 100%);/* Purple gradient applied */
     }
-    .hero-left,.hero-center,.hero-right{display:flex;flex-direction:column;justify-content:center;z-index:3;}
+    .hero-left,.hero-center,.hero-right{ position: relative;z-index:3;}
     .hero-left{align-items:flex-start;text-align:left;max-width:580px;flex:1}
     .hero-center{align-items:center;text-align:center}
     .hero-right{align-items:center;text-align:center}
 
-    #hero-desc { font-size:1.1rem;line-height:1.7;margin:0 0 24px 0;color:#fff; }
+    #hero-desc { font-size:1.1rem;line-height:1.7;margin:0 0 24px 0;color:#fff;opacity: 1; }/* ensure visible even before GSAP runs */
 
     /* Stable rotating text: min-width prevents jumps */
     #rotating-text{
-      font-size:1.8rem;color:#facc15;min-width:260px;white-space:nowrap;
+      font-size:1.2rem;color:#facc15;min-width:240px;white-space:nowrap;
       text-align:center;transition:opacity 0.45s ease;
     }
 
@@ -482,7 +482,7 @@
     // -------------------------
     // Rotating hero text (GSAP fade) - stable min-width prevents layout jump
     // -------------------------
-    const phrases = ["Learning with Heart, Leading with Impact.","Where Growth Meets Purpose.",""Elevating People, Empowering Performance."];
+    const phrases = ["Learning with Heart, Leading with Impact.","Where Growth Meets Purpose.","Elevating People, Empowering Performance."];
     const rotatingEl = document.getElementById('rotating-text');
     let idx = 0;
 
