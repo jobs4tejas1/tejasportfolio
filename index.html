@@ -73,16 +73,11 @@
   background: linear-gradient(135deg, #7f00ff 0%, #e100ff 100%);
   pointer-events: none; /* allows clicks through */
 }
-
-      background: linear-gradient(135deg,#7f00ff 0%,#e100ff 100%);/* Purple gradient applied */
-      background-color: #7f00ff;
- }
 /* Text and buttons stay above */
     .hero-left,.hero-center,.hero-right{ position: relative;z-index:3;}
     .hero-left{align-items:flex-start;text-align:left;max-width:580px;flex:1}
     .hero-center{align-items:center;text-align:center}
     .hero-right{align-items:center;text-align:center}
-
     #hero-desc { font-size:1.1rem;line-height:1.7;margin:0 0 24px 0;color:#fff;opacity: 1; }/* ensure visible even before GSAP runs */
 
     /* Stable rotating text: min-width prevents jumps */
@@ -90,14 +85,11 @@
       font-size:1.2rem;color:#facc15;min-width:240px;white-space:nowrap;
       text-align:center;transition:opacity 0.45s ease;
     }
-
     .hero-btn{
       background:white;color:#7f00ff;padding:12px 18px;border-radius:10px;font-weight:700;transition:all .25s ease;
     }
     .hero-btn:hover{background:#f3f4f6;transform:translateY(-2px)}
-
     /* Hero background & ripple also Ensure Lotties are behind content */
-
     .hero .section-bg-lottie,#ripple-container{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;}
     #ripple-container{top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.14;}
 
@@ -198,13 +190,11 @@
 
     <!-- HERO Section -->
     <section class="hero" aria-label="Introduction">
-    
+    <div id="ripple-container">
+		 <lottie-player src="assets/CircleGrow.json" background="transparent" speed="0.8" loop autoplay></lottie-player>
       <!-- LEFT: summary text -->
       <div class="hero-left">
-        <lottie-player id="CircleGrow" src="assets/CircleGrow.json" background="transparent" speed="1"
-         class="section-bg-lottie" style="width:140px;height:140px;margin-bottom:18px;" loop aria-hidden="true"></lottie-player>
-
-        <p id="hero-desc">
+          <p id="hero-desc">
           I'm a Learning & Development specialist turning programs into measurable results. From content design to leadership development 
 	  and digital learning innovations, I craft experiences that engage minds, inspire action, and drive organizational success.
         </p>
@@ -613,4 +603,5 @@
   </script>
 </body>
 </html>
+
 
