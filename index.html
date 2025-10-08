@@ -62,17 +62,17 @@
       overflow: hidden;
       color: #fff;
       min-height: 60vh;
-    
-/* Gradient overlay using pseudo-element */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0; /* top:0; bottom:0; left:0; right:0 */
-  z-index: 0; /* behind text/content */
-  background: linear-gradient(135deg, #7f00ff 0%, #e100ff 100%);
-  pointer-events: none; /* allows clicks through */
-}
-/* Text and buttons stay above */
+    }
+    /* Gradient overlay using pseudo-element */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0; /* top:0; bottom:0; left:0; right:0 */
+      z-index: 0; /* behind text/content */
+      background: linear-gradient(135deg, #7f00ff 0%, #e100ff 100%);
+      pointer-events: none; /* allows clicks through */
+    }
+    /* Text and buttons stay above */
     .hero-left,.hero-center,.hero-right{ position: relative;z-index:3;}
     .hero-left{align-items:flex-start;text-align:left;max-width:580px;flex:1}
     .hero-center{align-items:center;text-align:center}
@@ -92,6 +92,24 @@
     .hero .section-bg-lottie,#ripple-container{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;}
     #ripple-container{top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.14;}
 
+    /* ensure hero CircleGrow Lottie scales nicely and sits behind content */
+    .hero-lottie {
+      position: absolute;
+      inset: 0;
+      width: 120%;
+      height: 120%;
+      left: -10%;
+      top: -10%;
+      transform: translateZ(0);
+      z-index: 1;
+      opacity: 0.14;
+      pointer-events: none;
+    }
+    @media (max-width: 768px) {
+      .hero-lottie { width: 160%; height: 160%; left: -30%; top: -20%; opacity: 0.12; }
+      .hero { padding: 40px 20px; min-height: 58vh; border-radius: 14px; }
+    }
+
     /* Sections default */
     section{padding:70px 20px;position:relative;overflow:hidden}
     section:nth-of-type(odd){background:white}
@@ -99,9 +117,22 @@
     section h2{font-size:26px;margin-bottom:16px;color:var(--primary);text-align:center}
     section p{text-align:center;max-width:880px;margin:0 auto 20px}
 
-    /* SKILLS: background Lottie sits behind skills content */
-    #skills{position:relative;z-index:1}
-    #skills .skills-bg{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.08;z-index:0;pointer-events:none}
+    /* SKILLS: background Lottie sits behind skills content (full section cover) */
+    #skills{position:relative;z-index:1;overflow:hidden}
+    .skills-bg-lottie{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      opacity:0.07; /* subtle */
+      z-index:0;
+      pointer-events:none;
+      display:block;
+    }
+    .skills-content{
+      position:relative;
+      z-index:1;
+    }
     .skills{display:flex;flex-direction:column;gap:12px;max-width:600px;margin:0 auto;position:relative;z-index:2}
     .skill-row{display:flex;align-items:center;gap:12px;background:#f3f4f6;padding:12px;border-radius:10px}
     .skill-name{width:180px;font-weight:600;color:#374151}
@@ -118,7 +149,8 @@
     /* Services */
     .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;max-width:1200px;margin:0 auto}
     .service-card{background:#fff;border-radius:20px;padding:28px;transition:transform .28s,box-shadow .28s;cursor:pointer;position:relative;overflow:hidden;border:1px solid #e8e8e8;min-height:160px;display:flex;flex-direction:column;justify-content:flex-end}
-    .service-card::before{content:'';position:absolute;inset:0;background-image:var(--bg);background-size:cover;background-position:center;opacity:0.12;filter:grayscale(8%);z-index:0;pointer-events:none;transition:opacity .28s ease}
+    /* This ::before uses the --bg inline style from HTML for card backgrounds */
+    .service-card::before{content:'';position:absolute;inset:0;background-size:cover;background-position:center;opacity:0.12;z-index:0;pointer-events:none;border-radius:20px;filter:grayscale(8%)}
     .service-card h3,.service-card p{position:relative;z-index:2;margin:0}
     .service-card:hover{transform:translateY(-8px);box-shadow:0 10px 25px rgba(0,0,0,0.12)}
 
@@ -145,11 +177,16 @@
       #hero-desc{font-size:1rem}
       #ripple-container{display:none}
       nav.mobile{left:12px;right:12px;top:64px}
+      .service-card{padding:18px}
     }
 
     footer{margin-top:0;color:var(--muted);font-size:14px;text-align:center;padding:30px;background:white}
     .contact-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
     .contact-card{display:flex;align-items:center;gap:10px;flex-direction:column}
+
+    /* Utility: center captions for certifications and ensure images responsive */
+    .cert-card { text-align:center; display:flex;flex-direction:column; gap:8px; align-items:center; }
+    .cert-card img { width:100%; height:auto; border-radius:10px; object-fit:cover; display:block; }
   </style>
 </head>
 <body>
@@ -187,14 +224,14 @@
       </nav>
     </header>
 
-    <!-- HERO Section -->
-    <section id ="hero" section class="hero">
-    
+    <!-- HERO Section (fixed tag) -->
+    <section id="hero" class="hero">
+
       <!-- LEFT: summary text -->
       <div class="hero-left">
           <p id="hero-desc">
           I'm a Learning & Development specialist turning programs into measurable results. From content design to leadership development 
-	  and digital learning innovations, I craft experiences that engage minds, inspire action, and drive organizational success.
+      and digital learning innovations, I craft experiences that engage minds, inspire action, and drive organizational success.
         </p>
       </div>
 
@@ -211,25 +248,30 @@
       </div>
 
       <!-- subtle ripple background container -->
-      <div id="ripple-container"></div>
-		<lottie-player src="assets/CircleGrow.json" background="transparent" speed="0.8" loop autoplay></lottie-player>
+      <div id="ripple-container" aria-hidden="true"></div>
+
+      <!-- hero decorative Lottie (CircleGrow) - behind content -->
+      <lottie-player class="hero-lottie" src="assets/CircleGrow.json" background="transparent" speed="0.8" loop autoplay aria-hidden="true"></lottie-player>
     </section>
 
-    <!-- SKILLS (with competency.json behind) -->
+    <!-- SKILLS (with competency.json behind covering entire section) -->
     <section id="skills">
-      <h2>Skill Summary</h2>
-      <div class="skills">
-        <div class="skill-row animate"><div class="skill-name">Instructional Design</div><div class="skill-bar"><i style="width:80%"></i></div></div>
-        <div class="skill-row animate"><div class="skill-name">LMS Implementation</div><div class="skill-bar"><i style="width:85%"></i></div></div>
-        <div class="skill-row animate"><div class="skill-name">Leadership Development</div><div class="skill-bar"><i style="width:80%"></i></div></div>
-        <div class="skill-row animate"><div class="skill-name">HR Analytics</div><div class="skill-bar"><i style="width:90%"></i></div></div>
-        <div class="skill-row animate"><div class="skill-name">Competency Mapping</div><div class="skill-bar"><i style="width:75%"></i></div></div>
-        <div class="skill-row animate"><div class="skill-name">Content Development</div><div class="skill-bar"><i style="width:88%"></i></div></div>
+      <!-- background decorative Lottie behind skills (full section cover) -->
+      <div class="skills-bg-lottie" aria-hidden="true">
+        <lottie-player src="assets/competency.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;"></lottie-player>
       </div>
-		  <div class="skills-bg">
-      <lottie-player src="assets/competency.json" background="transparent" speed="0.5" loop autoplay></lottie-player>
-    </div>
 
+      <div class="skills-content">
+        <h2>Skill Summary</h2>
+        <div class="skills">
+          <div class="skill-row animate"><div class="skill-name">Instructional Design</div><div class="skill-bar"><i style="width:80%"></i></div></div>
+          <div class="skill-row animate"><div class="skill-name">LMS Implementation</div><div class="skill-bar"><i style="width:85%"></i></div></div>
+          <div class="skill-row animate"><div class="skill-name">Leadership Development</div><div class="skill-bar"><i style="width:80%"></i></div></div>
+          <div class="skill-row animate"><div class="skill-name">HR Analytics</div><div class="skill-bar"><i style="width:90%"></i></div></div>
+          <div class="skill-row animate"><div class="skill-name">Competency Mapping</div><div class="skill-bar"><i style="width:75%"></i></div></div>
+          <div class="skill-row animate"><div class="skill-name">Performance Management</div><div class="skill-bar"><i style="width:88%"></i></div></div>
+        </div>
+      </div>
     </section>
 
     <!-- PROJECTS -->
@@ -309,51 +351,51 @@
       </div>
     </section>
 
-    <!-- CERTIFICATIONS (restored) -->
+    <!-- CERTIFICATIONS (restored & captions centered) -->
     <section id="certification">
       <h2 style="text-align:center;margin-bottom:20px">Certifications</h2>
 
       <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-bottom:20px">
-        <a class="card animate" href="assets/Instructional%20Design%20Foundations%20and%20Applications.jpg" target="_blank" style="flex:1 1 200px;max-width:250px">
-          <img src="assets/Instructional%20Design%20Foundations%20and%20Applications.jpg" alt="" style="width:100%;border-radius:10px">
-          <p style="margin-top:8px">Instructional Design Foundations</p>
+        <a class="card animate cert-card" href="assets/Instructional%20Design%20Foundations%20and%20Applications.jpg" target="_blank" style="flex:1 1 200px;max-width:250px">
+          <img src="assets/Instructional%20Design%20Foundations%20and%20Applications.jpg" alt="">
+          <p>Instructional Design Foundations</p>
         </a>
 
-        <a class="card animate" href="assets/Learning%20and%20Development.jpg" target="_blank" style="flex:1 1 200px;max-width:250px">
-          <img src="assets/Learning%20and%20Development.jpg" alt="" style="width:100%;border-radius:10px">
-          <p style="margin-top:8px">Learning & Development</p>
+        <a class="card animate cert-card" href="assets/Learning%20and%20Development.jpg" target="_blank" style="flex:1 1 200px;max-width:250px">
+          <img src="assets/Learning%20and%20Development.jpg" alt="">
+          <p>Learning & Development</p>
         </a>
 
-        <a class="card animate" href="assets/Using%20Generative%20AI%20for%20Learning%20Design%20Activities.jpg" target="_blank" style="flex:1 1 200px;max-width:250px">
-          <img src="assets/Using%20Generative%20AI%20for%20Learning%20Design%20Activities.jpg" alt="" style="width:100%;border-radius:10px">
-          <p style="margin-top:8px">Using GenAI for Learning Design Activities</p>
+        <a class="card animate cert-card" href="assets/Using%20Generative%20AI%20for%20Learning%20Design%20Activities.jpg" target="_blank" style="flex:1 1 200px;max-width:250px">
+          <img src="assets/Using%20Generative%20AI%20for%20Learning%20Design%20Activities.jpg" alt="">
+          <p>Using GenAI for Learning Design Activities</p>
         </a>
 
-        <a class="card animate" href="assets/Strategizing%20the%20use%20of%20Generative%20AI%20in%20learning%20Design.jpg" target="_blank" style="flex:1 1 200px;max-width:250px">
-          <img src="assets/Strategizing%20the%20use%20of%20Generative%20AI%20in%20learning%20Design.jpg" alt="" style="width:100%;border-radius:10px">
-          <p style="margin-top:8px">Strategizing GenAI in Learning Design</p>
+        <a class="card animate cert-card" href="assets/Strategizing%20the%20use%20of%20Generative%20AI%20in%20learning%20Design.jpg" target="_blank" style="flex:1 1 200px;max-width:250px">
+          <img src="assets/Strategizing%20the%20use%20of%20Generative%20AI%20in%20learning%20Design.jpg" alt="">
+          <p>Strategizing GenAI in Learning Design</p>
         </a>
       </div>
 
       <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px">
-        <a class="card animate" href="assets/Learning%20Experience%20Design%20Orientation%20to%20the%20Profession.jpg" target="_blank" style="flex:1 1 200px;max-width:250px">
-          <img src="assets/Learning%20Experience%20Design%20Orientation%20to%20the%20Profession.jpg" alt="" style="width:100%;border-radius:10px">
-          <p style="margin-top:8px">Learning Experience Design Orientation</p>
+        <a class="card animate cert-card" href="assets/Learning%20Experience%20Design%20Orientation%20to%20the%20Profession.jpg" target="_blank" style="flex:1 1 200px;max-width:250px">
+          <img src="assets/Learning%20Experience%20Design%20Orientation%20to%20the%20Profession.jpg" alt="">
+          <p>Learning Experience Design Orientation</p>
         </a>
 
-        <a class="card animate" href="assets/Accelerating%20your%20learning%20with%20ChatGPT.jpg" target="_blank" style="flex:1 1 200px;max-width:250px">
-          <img src="assets/Accelerating%20your%20learning%20with%20ChatGPT.jpg" alt="" style="width:100%;border-radius:10px">
-          <p style="margin-top:8px">Accelerating your learning with ChatGPT</p>
+        <a class="card animate cert-card" href="assets/Accelerating%20your%20learning%20with%20ChatGPT.jpg" target="_blank" style="flex:1 1 200px;max-width:250px">
+          <img src="assets/Accelerating%20your%20learning%20with%20ChatGPT.jpg" alt="">
+          <p>Accelerating your learning with ChatGPT</p>
         </a>
 
-        <a class="card animate" href="assets/OKR%20Certification%20Leadership%20and%20Goal%20Setting.jpg" target="_blank" style="flex:1 1 200px;max-width:250px">
-          <img src="assets/OKR%20Certification%20Leadership%20and%20Goal%20Setting.jpg" alt="" style="width:100%;border-radius:10px">
-          <p style="margin-top:8px">OKR Leadership & Goal Setting</p>
+        <a class="card animate cert-card" href="assets/OKR%20Certification%20Leadership%20and%20Goal%20Setting.jpg" target="_blank" style="flex:1 1 200px;max-width:250px">
+          <img src="assets/OKR%20Certification%20Leadership%20and%20Goal%20Setting.jpg" alt="">
+          <p>OKR Leadership & Goal Setting</p>
         </a>
 
-        <a class="card animate" href="assets/java.jpg" target="_blank" style="flex:1 1 200px;max-width:250px">
-          <img src="assets/java.jpg" alt="" style="width:100%;border-radius:10px">
-          <p style="margin-top:8px">CTPD Java Certification</p>
+        <a class="card animate cert-card" href="assets/java.jpg" target="_blank" style="flex:1 1 200px;max-width:250px">
+          <img src="assets/java.jpg" alt="">
+          <p>CTPD Java Certification</p>
         </a>
       </div>
     </section>
@@ -482,7 +524,7 @@
     document.querySelectorAll('.animate').forEach(el => revealObserver.observe(el));
 
     // -------------------------
-    // Rotating hero text (GSAP fade) - stable min-width prevents layout jump
+    // Rotating hero text (GSAP fade)
     // -------------------------
     const phrases = ["Learning with Heart, Leading with Impact.","Where Growth Meets Purpose.","Elevating People, Empowering Performance."];
     const rotatingEl = document.getElementById('rotating-text');
@@ -502,12 +544,19 @@
     const rotateInterval = setInterval(rotateText, 2600);
 
     // -------------------------
-    // Ripple creation (same approach as original)
+    // Ripple creation (throttled)
     // -------------------------
     const rippleContainer = document.getElementById('ripple-container');
+    let activeRipples = 0;
+    const MAX_RIPPLES = 8; // throttle: maintain subtle, avoid DOM overflow
+
     function createRipple(){
       const container = rippleContainer;
       if(!container) return;
+      // throttle concurrent ripples
+      if (activeRipples >= MAX_RIPPLES) return;
+      activeRipples++;
+
       const r = document.createElement('div');
       Object.assign(r.style, {
         position: 'absolute',
@@ -519,7 +568,10 @@
         opacity: '0.45', zIndex: 1, pointerEvents: 'none'
       });
       container.appendChild(r);
-      gsap.to(r, {duration:1.8, scale:4, opacity:0, ease:"power2.out", onComplete: () => r.remove()});
+      gsap.to(r, {duration:1.8, scale:4, opacity:0, ease:"power2.out", onComplete: () => {
+        r.remove();
+        activeRipples = Math.max(0, activeRipples - 1);
+      }});
     }
     // initial ripple & repeating ripples (but disabled on small screens)
     setTimeout(()=> createRipple(), 900);
@@ -563,7 +615,27 @@
     }));
 
     // -------------------------
-    // Contact widget (Need a Solution ? Buzz me !) logic
+    // Service card ::before background injection from inline --bg
+    // -------------------------
+    // ensure cards that use inline --bg have their ::before background set
+    (function applyServiceBg(){
+      const cards = document.querySelectorAll('.service-card');
+      cards.forEach(card => {
+        const bg = getComputedStyle(card).getPropertyValue('--bg');
+        if(bg && bg.trim() !== '') {
+          // apply as CSS background image on the element's ::before via style attribute fallback
+          card.style.setProperty('--computed-bg', bg);
+          // also set style directly as backgroundImage on the element's style as a fallback for older browsers
+          card.style.backgroundImage = 'none';
+          card.style.backgroundColor = 'transparent';
+          // set inline style on the element so the ::before rule can pick up via computed style CSS variable (modern browsers)
+          card.style.setProperty('--bg-image', bg.replace(/^url\(|\)$/g, ''));
+        }
+      });
+    })();
+
+    // -------------------------
+    // Contact widget logic
     // -------------------------
     const widget = document.getElementById('contactWidget');
     const header = document.getElementById('contactHeader');
@@ -603,6 +675,3 @@
   </script>
 </body>
 </html>
-
-
-
