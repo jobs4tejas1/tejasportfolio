@@ -62,8 +62,7 @@
       overflow: hidden;
       color: #fff;
       min-height: 60vh;
-      /* remove direct background gradient */
-      background: none;
+    
 /* Gradient overlay using pseudo-element */
 .hero::before {
   content: '';
@@ -189,9 +188,8 @@
     </header>
 
     <!-- HERO Section -->
-    <section class="hero" aria-label="Introduction">
-    <div id="ripple-container">
-		 <lottie-player src="assets/CircleGrow.json" background="transparent" speed="0.8" loop autoplay></lottie-player>
+    <section id ="hero" section class="hero">
+    
       <!-- LEFT: summary text -->
       <div class="hero-left">
           <p id="hero-desc">
@@ -214,6 +212,7 @@
 
       <!-- subtle ripple background container -->
       <div id="ripple-container"></div>
+		<lottie-player src="assets/CircleGrow.json" background="transparent" speed="0.8" loop autoplay></lottie-player>
     </section>
 
     <!-- SKILLS (with competency.json behind) -->
