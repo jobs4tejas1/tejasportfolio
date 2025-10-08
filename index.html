@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tejas Pitale — L&D Portfolio (Fixed Hero)</title>
+  <title>Tejas Pitale — L&D Portfolio</title>
 
   <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -16,138 +16,140 @@
 
   <style>
     :root{
-      --primary:#7f00ff; --secondary:#e100ff; --accent:#8b5cf6; --muted:#6b7280; --bg:#f9fafb;
+      --primary:#7f00ff; --secondary:#e100ff; --accent:#8b5cf6;
+      --muted:#6b7280; --bg:#f9fafb;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:#111827;line-height:1.6;-webkit-font-smoothing:antialiased}
-    a{color:var(--secondary);text-decoration:none;transition:0.2s} a:hover{color:var(--accent)}
+    body{
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+      background:var(--bg);color:#111827;
+      line-height:1.6;-webkit-font-smoothing:antialiased;
+    }
+    a{color:var(--secondary);text-decoration:none;transition:0.18s}
+    a:hover{color:var(--accent)}
     .container{max-width:1100px;margin:0 auto;padding:18px}
 
     /* Header */
-    header{display:flex;align-items:center;justify-content:space-between;padding:16px 0;position:sticky;top:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(6px);z-index:120}
+    header{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:16px 0;position:sticky;top:0;background:rgba(255,255,255,0.95);
+      backdrop-filter:blur(6px);z-index:120;
+    }
     .brand{font-weight:700;color:var(--primary);font-size:20px}
-    nav.desktop{display:flex;gap:20px}
+    nav.desktop{display:flex;gap:18px}
     nav.desktop a{color:#111827;font-weight:600}
     .burger{display:none;background:transparent;border:0;font-size:22px;cursor:pointer}
     @media(max-width:840px){nav.desktop{display:none}.burger{display:block}}
-    nav.mobile{display:none;position:absolute;left:12px;right:12px;top:70px;background:white;padding:12px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.08)}
-    nav.mobile.open{display:block}
+    nav.mobile{
+      display:none;position:absolute;left:12px;right:12px;top:70px;background:white;
+      padding:12px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.08);
+      transform-origin:top;transform:scaleY(0);transition:transform 0.25s ease;
+      z-index:200;
+    }
+    nav.mobile.open{display:block;transform:scaleY(1)}
     nav.mobile a{display:block;padding:12px 6px;border-bottom:1px solid #f3f4f6}
 
-    /* HERO alignment fix */
-.hero {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  background: linear-gradient(135deg,#7f00ff,#e100ff) !important;
-  padding: 60px 40px !important;
-  min-height: 60vh !important;
-  color: #fff;
-}
+    /* HERO - purple gradient restored */
+    .hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      padding: 60px 40px;
+      border-radius: 22px;
+      overflow: hidden;
+      color: #fff;
+      min-height: 60vh;
+      background: linear-gradient(135deg,#7f00ff 0%,#e100ff 100%);
+    }
+    .hero-left,.hero-center,.hero-right{display:flex;flex-direction:column;justify-content:center;z-index:3;}
+    .hero-left{align-items:flex-start;text-align:left;max-width:580px;flex:1}
+    .hero-center{align-items:center;text-align:center}
+    .hero-right{align-items:center;text-align:center}
 
-.hero-left,
-.hero-center,
-.hero-right {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-}
+    #hero-desc { font-size:1.1rem;line-height:1.7;margin:0 0 24px 0;color:#fff; }
 
-.hero-left {
-  align-items: flex-start !important;
-  text-align: left !important;
-  max-width: 580px !important;
-  flex: 1 1 auto !important;
-}
+    /* Stable rotating text: min-width prevents jumps */
+    #rotating-text{
+      font-size:1.8rem;color:#facc15;min-width:260px;white-space:nowrap;
+      text-align:center;transition:opacity 0.45s ease;
+    }
 
-.hero-center {
-  align-items: center !important;
-  text-align: center !important;
-  flex: 0 0 auto !important;
-}
+    .hero-btn{
+      background:white;color:#7f00ff;padding:12px 18px;border-radius:10px;font-weight:700;transition:all .25s ease;
+    }
+    .hero-btn:hover{background:#f3f4f6;transform:translateY(-2px)}
 
-.hero-right {
-  align-items: center !important;
-  text-align: center !important;
-  flex: 0 0 auto !important;
-}
+    /* Hero background & ripple */
+    .hero .section-bg-lottie,
+    #ripple-container{
+      position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;
+    }
+    #ripple-container{top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.14;}
 
-#hero-desc {
-  font-size: 1.1rem !important;
-  line-height: 1.7 !important;
-  margin: 0 0 24px 0 !important;
-  color: #fff !important;
-}
-
-
-     /* Lottie behind hero optionally (kept very subtle) */
-    .hero .section-bg-lottie{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:0.08}
-
-    /* ripple container sits behind content but above gradient */
-    #ripple-container{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;pointer-events:none;opacity:0.14}
-
-    /* Sections */
+    /* Sections default */
     section{padding:70px 20px;position:relative;overflow:hidden}
     section:nth-of-type(odd){background:white}
     section:nth-of-type(even){background:linear-gradient(135deg,#f9fafb,#f3e8ff)}
     section h2{font-size:26px;margin-bottom:16px;color:var(--primary);text-align:center}
     section p{text-align:center;max-width:880px;margin:0 auto 20px}
 
+    /* SKILLS: background Lottie sits behind skills content */
+    #skills{position:relative;z-index:1}
+    #skills .skills-bg{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.08;z-index:0;pointer-events:none}
+    .skills{display:flex;flex-direction:column;gap:12px;max-width:600px;margin:0 auto;position:relative;z-index:2}
+    .skill-row{display:flex;align-items:center;gap:12px;background:#f3f4f6;padding:12px;border-radius:10px}
+    .skill-name{width:180px;font-weight:600;color:#374151}
+    .skill-bar{flex:1;height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden}
+    .skill-bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--secondary),var(--accent))}
+
     /* Grid & Cards */
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
     .card{background:white;padding:20px;border-radius:14px;box-shadow:0 6px 16px rgba(0,0,0,0.05);transition:transform .2s;position:relative;overflow:hidden}
     .card:hover{transform:translateY(-6px)}
     .card lottie-player{position:relative;z-index:2;display:block}
-    .card h3{position:relative;z-index:3}
-    .card p{position:relative;z-index:3}
+    .card h3,.card p{position:relative;z-index:3}
 
-    /* Services: image as subtle background via CSS var */
+    /* Services */
     .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;max-width:1200px;margin:0 auto}
     .service-card{background:#fff;border-radius:20px;padding:28px;transition:transform .28s,box-shadow .28s;cursor:pointer;position:relative;overflow:hidden;border:1px solid #e8e8e8;min-height:160px;display:flex;flex-direction:column;justify-content:flex-end}
     .service-card::before{content:'';position:absolute;inset:0;background-image:var(--bg);background-size:cover;background-position:center;opacity:0.12;filter:grayscale(8%);z-index:0;pointer-events:none;transition:opacity .28s ease}
     .service-card h3,.service-card p{position:relative;z-index:2;margin:0}
     .service-card:hover{transform:translateY(-8px);box-shadow:0 10px 25px rgba(0,0,0,0.12)}
 
-    /* Skills */
-    .skills{display:flex;flex-direction:column;gap:12px;max-width:600px;margin:0 auto}
-    .skill-row{display:flex;align-items:center;gap:12px;background:#f3f4f6;padding:12px;border-radius:10px}
-    .skill-name{width:180px;font-weight:600;color:#374151}
-    .skill-bar{flex:1;height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden}
-    .skill-bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--secondary),var(--accent))}
-
-    /* Floating contact widget */
+    /* Contact widget */
     .contact-widget{position:fixed;bottom:20px;left:20px;width:300px;background:white;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,0.14);overflow:hidden;transition:all .32s ease-in-out;font-family:Inter;z-index:220}
     .contact-widget.collapsed{height:70px;width:250px}
     .contact-header{background:var(--primary);color:white;padding:10px 12px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:10px}
     .contact-header span{font-size:15px;line-height:1}
     .contact-body{padding:15px;display:none;flex-direction:column;gap:12px}
     .contact-widget.expanded .contact-body{display:flex}
-    .contact-body form{display:flex;flex-direction:column;gap:10px}
     .contact-body input,.contact-body textarea{padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px}
     .contact-body button{padding:10px;border:none;border-radius:8px;background:var(--secondary);color:white;font-weight:600;cursor:pointer;transition:0.18s}
-    .contact-body button:hover{background:var(--accent);color:white}
-    #contactHeader:hover lottie-player{transform:scale(1.08);transition:transform .25s ease}
+    .contact-body button:hover{background:var(--accent)}
 
     /* Reveal animations */
     .animate{opacity:0;transform:translateY(22px);transition:all .72s cubic-bezier(.2,.9,.3,1)}
     .animate.visible{opacity:1;transform:translateY(0)}
 
-    /* Responsive tweaks */
-    @media(max-width:840px){
-      .hero{flex-direction:column;padding:30px}
-      .hero-right{width:100%}.profile{width:160px;height:160px}
+    /* Responsive */
+    @media(max-width:768px){
+      .hero{flex-direction:column;text-align:center;padding:40px 20px;gap:24px}
+      .hero-left,.hero-center,.hero-right{align-items:center;text-align:center;max-width:100%}
+      .profile{width:140px;height:140px}
+      #hero-desc{font-size:1rem}
+      #ripple-container{display:none}
+      nav.mobile{left:12px;right:12px;top:64px}
     }
 
     footer{margin-top:0;color:var(--muted);font-size:14px;text-align:center;padding:30px;background:white}
-
-    /* Small utility */
     .contact-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
-    .contact-card{display:flex;align-items:center;gap:10px}
+    .contact-card{display:flex;align-items:center;gap:10px;flex-direction:column}
   </style>
 </head>
 <body>
-
   <div class="container">
     <!-- Header -->
     <header>
@@ -182,103 +184,45 @@
       </nav>
     </header>
 
-    <!-- HERO Section (fixed alignment) -->
-<section class="hero" aria-label="Introduction"
-  style="
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    padding: 60px 40px;
-    border-radius: 22px;
-    overflow: hidden;
-    color: #fff;
-    min-height: 60vh;
-    background: linear-gradient(135deg,#7f00ff 0%,#e100ff 100%) !important;
-  ">
+    <!-- HERO Section -->
+    <section class="hero" aria-label="Introduction">
+      <!-- faint background Lottie (decorative) -->
+      <lottie-player src="assets/competency.json" background="transparent" speed="1" loop aria-hidden="true"
+        style="opacity:0.06;position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;"></lottie-player>
 
-  <!-- faint background -->
-  <lottie-player
-    src="assets/competency.json"
-    background="transparent"
-    speed="1"
-    loop
-    style="opacity:0.06;position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;">
-  </lottie-player>
+      <!-- LEFT: summary text -->
+      <div class="hero-left">
+        <lottie-player id="CircleGrow" src="assets/CircleGrow.json" background="transparent" speed="1"
+          style="width:120px;height:120px;margin-bottom:18px;" loop aria-hidden="true"></lottie-player>
 
-  <!-- LEFT: summary text -->
-  <div class="hero-left" style="
-      flex:1;
-      z-index:3;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:flex-start;
-      text-align:left;
-      max-width:580px;">
-    <lottie-player id="CircleGrow"
-      src="assets/CircleGrow.json"
-      background="transparent"
-      speed="1"
-      style="width:120px;height:120px;margin-bottom:18px;"
-      loop>
-    </lottie-player>
+        <p id="hero-desc">
+          I’m a Learning & Development specialist turning programs into measurable results.
+          From leadership development to digital learning innovations, I create experiences
+          that engage minds, inspire action, and drive organizational success.
+        </p>
+      </div>
 
-    <p id="hero-desc" style="
-        font-size:1.1rem;
-        line-height:1.7;
-        color:#fff;
-        margin:0 0 24px 0;">
-      I’m a Learning & Development specialist turning programs into measurable results.
-      From leadership development to digital learning innovations, I create experiences
-      that engage minds, inspire action, and drive organizational success.
-    </p>
-  </div>
+      <!-- CENTER: rotating text + CTA -->
+      <div class="hero-center">
+        <h2 id="rotating-text" aria-live="polite"></h2>
+        <a href="#contact" class="hero-btn">Let’s Transform</a>
+      </div>
 
-  <!-- CENTER: rotating text + CTA -->
-  <div class="hero-center" style="
-      flex:0 0 auto;
-      z-index:3;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;">
-    <h2 id="rotating-text"
-      style="font-size:1.8rem;color:#facc15;min-height:2.2rem;margin-bottom:14px;">
-    </h2>
-    <a href="#contact" class="btn"
-      style="background:white;color:#7f00ff;padding:12px 18px;border-radius:10px;font-weight:700;">
-      Let’s Transform
-    </a>
-  </div>
+      <!-- RIGHT: profile -->
+      <div class="hero-right">
+        <img class="profile" src="assets/tejasprofile.jpeg" alt="Tejas Pitale"
+          style="width:200px;height:200px;border-radius:50%;border:4px solid rgba(255,255,255,0.15);object-fit:cover;">
+      </div>
 
-  <!-- RIGHT: profile -->
-  <div class="hero-right" style="
-      flex:0 0 auto;
-      z-index:3;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;">
-    <img class="profile"
-      src="assets/tejasprofile.jpeg"
-      alt="Tejas Pitale"
-      style="width:200px;height:200px;border-radius:50%;
-      border:4px solid rgba(255,255,255,0.15);object-fit:cover;">
-  </div>
+      <!-- subtle ripple background container -->
+      <div id="ripple-container"></div>
+    </section>
 
-  <!-- subtle ripple background -->
-  <div id="ripple-container"
-    style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-           z-index:2;pointer-events:none;opacity:0.14;">
-  </div>
-</section>
-
-
-    <!-- SKILLS -->
+    <!-- SKILLS (with competency.json behind) -->
     <section id="skills">
+      <!-- background decorative Lottie behind skills -->
+      <lottie-player class="skills-bg" src="assets/competency.json" background="transparent" speed="1" loop aria-hidden="true"></lottie-player>
+
       <h2>Skill Summary</h2>
       <div class="skills">
         <div class="skill-row animate"><div class="skill-name">Instructional Design</div><div class="skill-bar"><i style="width:80%"></i></div></div>
@@ -298,7 +242,7 @@
           <h3>Workforce Upskilling</h3>
           <p>Competency-based learning paths to close critical skill gaps.</p>
           <div style="position:relative;z-index:1">
-            <lottie-player src="assets/Workforce.json" background="transparent" speed="1" style="width:100%;height:140px;margin-top:8px;display:block" loop></lottie-player>
+            <lottie-player src="assets/Workforce.json" background="transparent" speed="1" style="width:100%;height:140px;margin-top:8px;display:block" loop aria-hidden="true"></lottie-player>
           </div>
         </div>
 
@@ -306,7 +250,7 @@
           <h3>LMS Implementation</h3>
           <p>Spearheaded Moodle & Tenneo implementation and adoption strategies.</p>
           <div style="position:relative;z-index:1">
-            <lottie-player src="assets/lms.json" background="transparent" speed="1" style="width:100%;height:140px;margin-top:8px;display:block" loop></lottie-player>
+            <lottie-player src="assets/lms.json" background="transparent" speed="1" style="width:100%;height:140px;margin-top:8px;display:block" loop aria-hidden="true"></lottie-player>
           </div>
         </div>
 
@@ -314,7 +258,7 @@
           <h3>Virtual Onboarding</h3>
           <p>Self-paced induction to speed ramp-up and reduce manager load.</p>
           <div style="position:relative;z-index:1">
-            <lottie-player src="assets/VirtualOnboarding.json" background="transparent" speed="1" style="width:100%;height:140px;margin-top:8px;display:block" loop></lottie-player>
+            <lottie-player src="assets/VirtualOnboarding.json" background="transparent" speed="1" style="width:100%;height:140px;margin-top:8px;display:block" loop aria-hidden="true"></lottie-player>
           </div>
         </div>
       </div>
@@ -367,7 +311,7 @@
       </div>
     </section>
 
-    <!-- CERTIFICATIONS -->
+    <!-- CERTIFICATIONS (restored) -->
     <section id="certification">
       <h2 style="text-align:center;margin-bottom:20px">Certifications</h2>
 
@@ -408,15 +352,15 @@
           <img src="assets/OKR%20Certification%20Leadership%20and%20Goal%20Setting.jpg" alt="" style="width:100%;border-radius:10px">
           <p style="margin-top:8px">OKR Leadership & Goal Setting</p>
         </a>
-		
-		<a class="card animate" href="assets/java.jpg" target="_blank" style="flex:1 1 200px;max-width:250px">
+
+        <a class="card animate" href="assets/java.jpg" target="_blank" style="flex:1 1 200px;max-width:250px">
           <img src="assets/java.jpg" alt="" style="width:100%;border-radius:10px">
           <p style="margin-top:8px">CTPD Java Certification</p>
         </a>
       </div>
     </section>
 
-    <!-- ACADEMICS -->
+    <!-- ACADEMICS (restored) -->
     <section id="academic">
       <h2>Academic Background</h2>
       <div class="grid">
@@ -435,19 +379,19 @@
       </div>
     </section>
 
-    <!-- VALUE PROPOSITION -->
+    <!-- VALUE PROPOSITION (restored) -->
     <section id="value">
       <h2>Value Proposition</h2>
-      <p>I design learning programs that are measurable, impactful, and align with business outcomes. My approach ensures knowledge retention, behavior change, and measurable ROI for organizations.</p>
+      <p>I design learning programs that are measurable, impactful, and aligned with business outcomes. My approach ensures knowledge retention, behavior change, and measurable ROI for organizations.</p>
     </section>
 
-    <!-- ABOUT -->
+    <!-- ABOUT (restored) -->
     <section id="about">
       <h2>About Me</h2>
       <p>I am a Learning & Development Specialist and HR Business Partner with 9+ years of experience across IT and consulting sectors. I specialize in instructional design, LMS implementations, competency frameworks, HR analytics, and employee engagement. Passionate about building learning ecosystems, I design programs that are measurable, engaging, and aligned with business outcomes.</p>
     </section>
 
-    <!-- BLOGS -->
+    <!-- BLOGS (restored) -->
     <section id="blogs">
       <h2>Blogs & Articles</h2>
       <div class="grid">
@@ -457,7 +401,7 @@
       </div>
     </section>
 
-    <!-- CONTACT SECTION (static contact info) -->
+    <!-- CONTACT -->
     <section id="contact" style="padding:80px 20px;text-align:center;background:#f9f9f9;color:#111;">
       <h2 style="font-size:2.5rem;margin-bottom:20px;color:#06b6d4">Contact Me</h2>
 
@@ -479,13 +423,14 @@
       </div>
     </section>
 
+    <footer>&copy; 2025 Tejas Pitale. All rights reserved.</footer>
   </div> <!-- /.container -->
 
-  <!-- Floating Contact Widget (Need a Solution , Buzz Me !!!) -->
-  <div id="contactWidget" class="contact-widget collapsed" role="dialog" aria-hidden="true" aria-label="Need a Solution , Buzz Me !!!">
+  <!-- Floating Contact Widget (renamed) -->
+  <div id="contactWidget" class="contact-widget collapsed" role="dialog" aria-hidden="true" aria-label="Need a Solution ? Buzz me !">
     <div id="contactHeader" class="contact-header" role="button" aria-expanded="false" aria-controls="contactFormBody">
-      <lottie-player id="contactLottie" src="assets/hi-wave.json" background="transparent" speed="1" style="width:36px;height:36px" loop autoplay></lottie-player>
-      <span>Need a Solution , Buzz Me !!!</span>
+      <lottie-player id="contactLottie" src="assets/hi-wave.json" background="transparent" speed="1" style="width:36px;height:36px" loop autoplay aria-hidden="true"></lottie-player>
+      <span>Need a Solution ? Buzz me !</span>
     </div>
 
     <div class="contact-body" id="contactFormBody" aria-hidden="true">
@@ -498,12 +443,11 @@
     </div>
   </div>
 
-  <footer>&copy; 2025 Tejas Pitale. All rights reserved.</footer>
-
+  <!-- Scripts -->
   <script>
-    // ----------------------------------------------------------
-    // Lottie lazy-play & error handling
-    // ----------------------------------------------------------
+    // -------------------------
+    // Lottie playback observer
+    // -------------------------
     const lotties = Array.from(document.querySelectorAll('lottie-player'));
     const lottieObserver = new IntersectionObserver((entries) => {
       entries.forEach(en => {
@@ -525,9 +469,9 @@
       lottieObserver.observe(lp);
     });
 
-    // ----------------------------------------------------------
-    // Reveal animations for elements with .animate
-    // ----------------------------------------------------------
+    // -------------------------
+    // Reveal animations (.animate)
+    // -------------------------
     const revealObserver = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -539,17 +483,19 @@
 
     document.querySelectorAll('.animate').forEach(el => revealObserver.observe(el));
 
-    // ----------------------------------------------------------
-    // Rotating phrases and ripple
-    // ----------------------------------------------------------
+    // -------------------------
+    // Rotating hero text (GSAP fade) - stable min-width prevents layout jump
+    // -------------------------
     const phrases = ["Engage minds","Inspire action","Drive organizational success","Unlock potential","Make learning matter"];
     const rotatingEl = document.getElementById('rotating-text');
     let idx = 0;
+
     function rotateText(){
       gsap.to(rotatingEl, {duration:0.45, opacity:0, onComplete: () => {
         rotatingEl.textContent = phrases[idx];
         gsap.to(rotatingEl, {duration:0.45, opacity:1});
-        createRipple(); // ripple on phrase change (subtle)
+        // create subtle ripple when rotating (keeps original feel)
+        createRipple();
         idx = (idx + 1) % phrases.length;
       }});
     }
@@ -557,8 +503,12 @@
     gsap.set(rotatingEl, {opacity:1});
     const rotateInterval = setInterval(rotateText, 2600);
 
+    // -------------------------
+    // Ripple creation (same approach as original)
+    // -------------------------
+    const rippleContainer = document.getElementById('ripple-container');
     function createRipple(){
-      const container = document.getElementById('ripple-container');
+      const container = rippleContainer;
       if(!container) return;
       const r = document.createElement('div');
       Object.assign(r.style, {
@@ -573,24 +523,36 @@
       container.appendChild(r);
       gsap.to(r, {duration:1.8, scale:4, opacity:0, ease:"power2.out", onComplete: () => r.remove()});
     }
-    // initial ripple
+    // initial ripple & repeating ripples (but disabled on small screens)
     setTimeout(()=> createRipple(), 900);
-    // ambient ripple behind hero occasionally
-    const rippleInterval = setInterval(createRipple, 1400);
+    let rippleInterval = null;
+    function startRipples(){
+      if (rippleInterval) clearInterval(rippleInterval);
+      rippleInterval = setInterval(createRipple, 1400);
+    }
+    function stopRipples(){
+      if (rippleInterval) clearInterval(rippleInterval);
+      rippleInterval = null;
+    }
+    // Only enable ambient ripples on larger viewports (save CPU/battery on mobile)
+    if (window.innerWidth >= 768) startRipples();
 
-    // GSAP entrance touches (keeps original behavior)
+    // Re-check on resize to toggle rippleInterval
+    window.addEventListener('resize', () => {
+      if (window.innerWidth < 768) stopRipples();
+      else startRipples();
+    });
+
+    // -------------------------
+    // GSAP entrance touches
+    // -------------------------
     gsap.to("#hero-desc", {duration:1, opacity:1, y:-10, ease:"power2.out"});
-    gsap.to(".btn", {duration:1, opacity:1, y:-10, delay:0.25, ease:"power2.out"});
+    gsap.to(".hero-btn", {duration:1, opacity:1, y:-10, delay:0.25, ease:"power2.out"});
     gsap.to("#rotating-text", {duration:1, opacity:1, y:-6, delay:0.1, ease:"power2.out"});
 
-    // ----------------------------------------------------------
-    // Service card backgrounds: ::before reads CSS var --bg (already set inline)
-    // ----------------------------------------------------------
-    // nothing else needed here because CSS uses var(--bg)
-
-    // ----------------------------------------------------------
+    // -------------------------
     // Mobile nav toggle
-    // ----------------------------------------------------------
+    // -------------------------
     const burgerBtn = document.getElementById('burgerBtn');
     const mobileNav = document.getElementById('mobileNav');
     burgerBtn && burgerBtn.addEventListener('click', () => {
@@ -602,9 +564,9 @@
       mobileNav.classList.remove('open'); mobileNav.setAttribute('aria-hidden','true'); burgerBtn.setAttribute('aria-expanded','false');
     }));
 
-    // ----------------------------------------------------------
-    // Contact widget (Need a Solution , Buzz Me !!!) logic
-    // ----------------------------------------------------------
+    // -------------------------
+    // Contact widget (Need a Solution ? Buzz me !) logic
+    // -------------------------
     const widget = document.getElementById('contactWidget');
     const header = document.getElementById('contactHeader');
     const contactBody = document.querySelector('.contact-body');
@@ -617,15 +579,16 @@
       contactBody.setAttribute('aria-hidden', isNowOpen ? 'false' : 'true');
 
       try {
-        contactLottie.setDirection(isNowOpen ? 1 : -1);
-        contactLottie.play();
+        // try to animate wave direction if library exposes API
+        contactLottie.setDirection && contactLottie.setDirection(isNowOpen ? 1 : -1);
+        contactLottie.play && contactLottie.play();
       } catch(e) { console.warn('contact lottie control failed', e); }
     });
 
     // subtle bounce entrance on load
     gsap.fromTo('#contactWidget', {y:40, autoAlpha:0}, {duration:0.9, y:0, autoAlpha:1, ease:"bounce.out", delay:1.1});
 
-    // form UX: fake send
+    // Fake form send UX
     document.getElementById('contactFormInner') && document.getElementById('contactFormInner').addEventListener('submit', (e) => {
       e.preventDefault();
       const btn = e.target.querySelector('button[type="submit"]');
@@ -634,21 +597,11 @@
       setTimeout(()=> { btn.textContent = 'Send'; btn.disabled = false; }, 2200);
     });
 
-    // Accessibility: show focus outlines for keyboard users
+    // Accessibility: focus outlines for keyboard users
     document.addEventListener('keydown', (e) => { if(e.key === 'Tab') document.body.classList.add('show-focus'); });
 
-    // Defensive logs if a Lottie is missing (helpful after deploy)
+    // Defensive logs if a Lottie is missing
     lotties.forEach(lp => lp.addEventListener('error', () => console.warn('Missing Lottie:', lp.getAttribute('src'))));
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
